@@ -38,10 +38,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.rootViewController = storybord.instantiateInitialViewController() as UIViewController?
         }
         
-        viewController = storybord.instantiateViewController(withIdentifier: "lineLogin") as UIViewController
-        nc = UINavigationController(rootViewController: viewController)
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.rootViewController = nc
+        if UserDefaults.standard.object(forKey: "loginOK") != nil {
+            loginCheck = UserDefaults.standard.object(forKey: "loginOK") as! Int
+            if loginCheck == 1 {
+                viewController = storybord.instantiateViewController(withIdentifier: "cardVC") as UIViewController
+                nc = UINavigationController(rootViewController: viewController)
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.rootViewController = nc
+            } else {
+                viewController = storybord.instantiateViewController(withIdentifier: "lineLogin") as UIViewController
+                nc = UINavigationController(rootViewController: viewController)
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window!.rootViewController = nc
+            }
+        }
         
         return true
     }

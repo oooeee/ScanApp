@@ -33,9 +33,9 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate, 
     
 
     @IBAction func openCamera(_ sender: Any) {
-        let sourceType:UIImagePickerController.SourceType = .camera
+        let sourceType:UIImagePickerController.SourceType = .photoLibrary
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
@@ -59,7 +59,9 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let pickedImage = info[.originalImage] as? UIImage {
             imageView.image = pickedImage
             // アラート出す（これでOK？）
-            checkAlert()
+            DispatchQueue.main.async {
+                self.checkAlert()
+            }
         }
         
         picker.dismiss(animated: true, completion: nil)
@@ -70,12 +72,13 @@ class SettingViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func checkAlert() {
-        let alert = EMAlertController(icon: UIImage(named: ""), title: "確認", message: "この背景画像でよろしいですか？")
+        let alert = EMAlertController(icon: UIImage(named: "check"), title: "確認", message: "この背景画像でよろしいですか？")
         let action1 = EMAlertAction(title: "はい", style: .normal) {
             self.imageView.contentMode = .scaleAspectFill
             var data = Data()
             data = (self.imageView.image?.pngData())!
             UserDefaults.standard.set(data, forKey: "image")
+            self.navigationController?.popViewController(animated: true)
         }
         
         let action2 = EMAlertAction(title: "もう1度", style: .normal)

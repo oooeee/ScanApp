@@ -10,8 +10,15 @@ import UIKit
 import SDWebImage
 import Firebase
 import MBDocCapture
+import Pastel
+import GoogleMobileAds
 
-class CardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ImageScannerControllerDelegate {
+class CardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ImageScannerControllerDelegate, GADInterstitialDelegate {
+    
+    
+    @IBOutlet weak var backGroundImageView: UIImageView!
+    
+    var pastelView1 = PastelView()
     
     var displayName = String()
     let refleshControl = UIRefreshControl()
@@ -25,6 +32,7 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // カード
     var cardImageView = UIImageView()
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +62,60 @@ class CardViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if UserDefaults.standard.object(forKey: "image") != nil {
+            var data = Data()
+            data = UserDefaults.standard.object(forKey: "image") as! Data
+            backGroundImageView.image = UIImage(data: data)
+        }
+        
+        pastelView1.removeFromSuperview()
+        graduationStart1()
+        NotificationCenter.default.addObserver(self, selector:
+            #selector(viewWillEnterForeground(
+                notification:)), name: UIApplication.willEnterForegroundNotification,
+                                 object: nil)
+        NotificationCenter.default.addObserver(self, selector:
+            #selector(viewDidEnterBackground(
+                notification:)), name: UIApplication.didEnterBackgroundNotification,
+                                 object: nil)
+        
+        let backButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButtonItem
+        navigationController?.setNavigationBarHidden(true, animated: true)
         fetchData()
     }
     
+    @objc func viewWillEnterForeground(notification: Notification) {
+        print("フォアグラウンド")
+        pastelView1.removeFromSuperview()
+        graduationStart1()
+    }
+    // AppDelegate -> applicationDidEnterBackgroundの通知
+    @objc func viewDidEnterBackground(notification: Notification) {
+        print("バックグラウンド")
+    }
     
+    func graduationStart1(){
+        pastelView1 = PastelView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height:
+            self.view.frame.size.height))
+        // Custom Direction
+        pastelView1.startPastelPoint = .bottomLeft
+        pastelView1.endPastelPoint = .topRight
+        // Custom Duration
+        pastelView1.animationDuration = 2.0
+        // Custom Color
+        pastelView1.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
+                               UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0),
+                               UIColor(red: 123/255, green: 31/255, blue: 162/255, alpha: 1.0),
+                               UIColor(red: 32/255, green: 76/255, blue: 255/255, alpha: 1.0),
+                               UIColor(red: 32/255, green: 158/255, blue: 255/255, alpha: 1.0),
+                               UIColor(red: 90/255, green: 120/255, blue: 127/255, alpha: 1.0),
+                               UIColor(red: 58/255, green: 255/255, blue: 217/255, alpha: 1.0)])
+        pastelView1.startAnimation()
+        view.insertSubview(pastelView1, at: 0)
+    }
+    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let userNameLabel = cell.viewWithTag(1) as! UILabel

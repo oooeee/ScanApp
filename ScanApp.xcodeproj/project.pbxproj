@@ -20,6 +20,8 @@
 		8E702B3A22D5F364000CB234 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E702B3922D5F364000CB234 /* EditViewController.swift */; };
 		8E702B3E22D743A1000CB234 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E702B3D22D743A1000CB234 /* DetailViewController.swift */; };
 		8E702B4022DF253E000CB234 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E702B3F22DF253E000CB234 /* SettingViewController.swift */; };
+		8EC02B5B22E9B942000A2B96 /* card.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EC02B5922E9B940000A2B96 /* card.json */; };
+		8EC02B5C22E9B942000A2B96 /* scan.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EC02B5A22E9B941000A2B96 /* scan.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		8E702B3922D5F364000CB234 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8E702B3D22D743A1000CB234 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8E702B3F22DF253E000CB234 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8EC02B5922E9B940000A2B96 /* card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = card.json; sourceTree = "<group>"; };
+		8EC02B5A22E9B941000A2B96 /* scan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scan.json; sourceTree = "<group>"; };
 		945D5ABB38C3025F8A027E95 /* Pods-ScanApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanApp.debug.xcconfig"; path = "Target Support Files/Pods-ScanApp/Pods-ScanApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A6C908921E25DD313EC3D154 /* Pods-ScanApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanApp.release.xcconfig"; path = "Target Support Files/Pods-ScanApp/Pods-ScanApp.release.xcconfig"; sourceTree = "<group>"; };
 		C5489073DAD5F99A15133536 /* Pods_ScanApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScanApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +104,8 @@
 				8E702B3F22DF253E000CB234 /* SettingViewController.swift */,
 				8E1272D422CF4F3A0030C83E /* Element.swift */,
 				8E1272D622CF4F500030C83E /* Post.swift */,
+				8EC02B5922E9B940000A2B96 /* card.json */,
+				8EC02B5A22E9B941000A2B96 /* scan.json */,
 				8E1272A222C4C59F0030C83E /* Main.storyboard */,
 				8E1272A522C4C5A10030C83E /* Assets.xcassets */,
 				8E1272A722C4C5A10030C83E /* LaunchScreen.storyboard */,
@@ -171,7 +177,9 @@
 			files = (
 				8E1272A922C4C5A10030C83E /* LaunchScreen.storyboard in Resources */,
 				8E1272A622C4C5A10030C83E /* Assets.xcassets in Resources */,
+				8EC02B5B22E9B942000A2B96 /* card.json in Resources */,
 				8E1272A422C4C59F0030C83E /* Main.storyboard in Resources */,
+				8EC02B5C22E9B942000A2B96 /* scan.json in Resources */,
 				8E1272B322CE0BE30030C83E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
